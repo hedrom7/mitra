@@ -59,7 +59,7 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument(
         "-o", "--output", default=None, metavar="KLASÖR",
-        help="Kayıt klasörü (varsayılan: ~/mitra-sites/<alan-adı>)",
+        help="Kayıt klasörü (varsayılan: terminali açtığın klasör)",
     )
     p.add_argument(
         "-d", "--depth", type=int, default=1, metavar="N",
@@ -157,8 +157,7 @@ def _interactive_mode() -> argparse.Namespace:
         url = "https://" + url
 
     # ── Klasör ───────────────────────────────────
-    host = urlparse(url).netloc.replace("www.", "") or "site"
-    default_dest = str(Path.home() / "mitra-sites" / host)
+    default_dest = str(Path.cwd())
     dest = os.path.expanduser(_read("Kayıt klasörü   : ", default_dest))
 
     # ── Derinlik ─────────────────────────────────
@@ -274,8 +273,7 @@ def main(argv: list[str] | None = None) -> int:
         if not args.url:
             args = _interactive_mode()
         if not args.output:
-            host = urlparse(args.url).netloc.replace("www.", "") or "site"
-            args.output = str(Path.home() / "mitra-sites" / host)
+            args.output = str(Path.cwd())
 
     _ensure_browser()
 
