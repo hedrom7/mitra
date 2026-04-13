@@ -240,7 +240,7 @@ class SiteDownloader:
                 await page.close()
                 return
             try:
-                await page.goto(url, wait_until="networkidle", timeout=30_000)
+                await page.goto(url, wait_until="load", timeout=60_000)
                 loaded = True
                 break
             except Exception as exc:
