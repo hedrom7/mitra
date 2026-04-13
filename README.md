@@ -14,22 +14,19 @@ otomatik olarak yakalanır; bağlantılar yerel dosyalara yönlendirilir.
 
 ### Kurulum
 
-**1. pipx kur** (bir kez yeterli):
-
 ```bash
-brew install pipx
-pipx ensurepath
+git clone https://github.com/hedrom7/mitra.git
+cd mitra
+bash install.sh
 ```
 
-> Terminali kapatıp yeniden aç.
-
-**2. Mitra'yı kur:**
+Yeni terminal aç:
 
 ```bash
-pipx install git+https://github.com/hedrom7/mitra.git
+mitra
 ```
 
-> İlk `mitra` çalıştırmasında Chromium (~170 MB) **otomatik** indirilir. Başka bir şey yapmanıza gerek yoktur.
+> İlk çalıştırmada Chromium (~170 MB) **otomatik** indirilir. Başka bir şey yapmanıza gerek yoktur.
 
 ---
 
