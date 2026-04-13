@@ -15,7 +15,7 @@ otomatik olarak yakalanır; bağlantılar yerel dosyalara yönlendirilir.
 ### Tek komutla kur
 
 ```bash
-pip install git+https://github.com/KULLANICI_ADI/mitra.git
+pip install git+https://github.com/hedrom7/mitra.git
 ```
 
 > İlk çalıştırmada Chromium (~170 MB) **otomatik** indirilir. Başka bir şey yapmanıza gerek yoktur.
@@ -100,7 +100,7 @@ mitra https://example.com --no-headless
 ## Geliştirme ortamı
 
 ```bash
-git clone https://github.com/KULLANICI_ADI/mitra.git
+git clone https://github.com/hedrom7/mitra.git
 cd mitra
 python3 -m venv .venv
 source .venv/bin/activate
