@@ -12,13 +12,24 @@ otomatik olarak yakalanır; bağlantılar yerel dosyalara yönlendirilir.
 - Python 3.10+
 - pip
 
-### Tek komutla kur
+### Kurulum
+
+**1. pipx kur** (bir kez yeterli):
 
 ```bash
-pip install git+https://github.com/hedrom7/mitra.git
+brew install pipx
+pipx ensurepath
 ```
 
-> İlk çalıştırmada Chromium (~170 MB) **otomatik** indirilir. Başka bir şey yapmanıza gerek yoktur.
+> Terminali kapatıp yeniden aç.
+
+**2. Mitra'yı kur:**
+
+```bash
+pipx install git+https://github.com/hedrom7/mitra.git
+```
+
+> İlk `mitra` çalıştırmasında Chromium (~170 MB) **otomatik** indirilir. Başka bir şey yapmanıza gerek yoktur.
 
 ---
 
@@ -105,6 +116,7 @@ cd mitra
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e ".[gui]"
+playwright install chromium
 ```
 
 ```bash
