@@ -83,6 +83,7 @@ def _build_parser() -> argparse.ArgumentParser:
         "--rate-limit", type=int, default=200, metavar="MS",
         help="Sayfalar arası bekleme ms (varsayılan: 200)",
     )
+    p.add_argument("--update", action="store_true", help="Mitra'yı son sürüme güncelle")
     return p
 
 
@@ -260,6 +261,24 @@ class _ProgressPrinter:
             sys.stderr.flush()
 
 
+# ─── Güncelleme ──────────────────────────────────────────────────────────────
+
+GITHUB_URL = "git+https://github.com/hedrom7/mitra.git"
+
+def _self_update() -> None:
+    _print_banner()
+    print("  Güncelleme kontrol ediliyor…\n")
+    result = subprocess.run(
+        [sys.executable, "-m", "pip", "install", "--upgrade", "--quiet", GITHUB_URL],
+        capture_output=False,
+    )
+    if result.returncode == 0:
+        print("\n  ✓ Güncelleme tamamlandı. Şimdi mitra'yı yeniden başlat.\n")
+    else:
+        print("\n  ✗ Güncelleme başarısız oldu.\n", file=sys.stderr)
+    sys.exit(result.returncode)
+
+
 # ─── Ana fonksiyon ───────────────────────────────────────────────────────────
 
 def main(argv: list[str] | None = None) -> int:
@@ -270,6 +289,8 @@ def main(argv: list[str] | None = None) -> int:
         _print_banner()
         parser = _build_parser()
         args = parser.parse_args(argv)
+        if getattr(args, "update", False):
+            _self_update()
         if not args.url:
             args = _interactive_mode()
         if not args.output:
